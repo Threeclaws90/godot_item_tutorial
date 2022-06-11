@@ -1,0 +1,62 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://addons/data_editor/scripts/components/texture_selection_button.gd" type="Script" id=1]
+
+
+[sub_resource type="StyleBoxEmpty" id=1]
+
+[sub_resource type="StyleBoxFlat" id=2]
+bg_color = Color( 1, 1, 1, 0.196078 )
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+
+[sub_resource type="StyleBoxEmpty" id=3]
+
+[sub_resource type="StyleBoxEmpty" id=4]
+
+[node name="Texture Selection Button" type="MarginContainer"]
+margin_bottom = 14.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+script = ExtResource( 1 )
+texture_rect_path = NodePath("VBoxContainer/MarginContainer/TextureRect")
+button_path = NodePath("VBoxContainer/MarginContainer/Button")
+label_path = NodePath("VBoxContainer/Label")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_bottom = 14.0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+margin_bottom = 14.0
+
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MarginContainer"]
+expand = true
+stretch_mode = 6
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Button" type="ToolButton" parent="VBoxContainer/MarginContainer"]
+margin_bottom = 14.0
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/focus = SubResource( 2 )
+custom_styles/disabled = SubResource( 3 )
+custom_styles/normal = SubResource( 4 )
+toggle_mode = true
+flat = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+visible = false
+margin_top = 18.0
+margin_right = 128.0
+margin_bottom = 32.0
+size_flags_vertical = 1
+text = "None"
+align = 1
+autowrap = true

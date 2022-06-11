@@ -1,0 +1,134 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://addons/data_editor/scripts/item_editor/item_tree.gd" type="Script" id=1]
+[ext_resource path="res://addons/data_editor/scenes/components/texture/texture_selection.tscn" type="PackedScene" id=2]
+[ext_resource path="res://addons/data_editor/scripts/item_editor/item_handler.gd" type="Script" id=3]
+
+[node name="Item" type="MarginContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="HSplitContainer" type="HSplitContainer" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer"]
+margin_right = 250.0
+margin_bottom = 1080.0
+
+[node name="Filter" type="LineEdit" parent="HSplitContainer/VBoxContainer"]
+margin_right = 250.0
+margin_bottom = 24.0
+rect_min_size = Vector2( 250, 0 )
+placeholder_text = "Filter..."
+
+[node name="Item Tree" type="Tree" parent="HSplitContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 250.0
+margin_bottom = 1080.0
+size_flags_vertical = 3
+hide_root = true
+script = ExtResource( 1 )
+filter_edit_path = NodePath("../Filter")
+can_duplicate = true
+item_handler_path = NodePath("../../Item Handler")
+
+[node name="Item Handler" type="MarginContainer" parent="HSplitContainer"]
+margin_left = 262.0
+margin_right = 1920.0
+margin_bottom = 1080.0
+script = ExtResource( 3 )
+name_edit_path = NodePath("VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/GridContainer/Name")
+price_spin_path = NodePath("VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/GridContainer/Price")
+texture_select_path = NodePath("VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer/Icon")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Item Handler"]
+margin_right = 1658.0
+margin_bottom = 1080.0
+
+[node name="PanelContainer" type="PanelContainer" parent="HSplitContainer/Item Handler/VBoxContainer"]
+margin_right = 1658.0
+margin_bottom = 100.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer"]
+margin_left = 7.0
+margin_top = 7.0
+margin_right = 1651.0
+margin_bottom = 93.0
+
+[node name="Header" type="VBoxContainer" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_right = 1644.0
+margin_bottom = 22.0
+
+[node name="Label" type="Label" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/Header"]
+margin_right = 1644.0
+margin_bottom = 14.0
+text = "General"
+align = 1
+
+[node name="HSeparator" type="HSeparator" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/Header"]
+margin_top = 18.0
+margin_right = 1644.0
+margin_bottom = 22.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer"]
+margin_top = 26.0
+margin_right = 1644.0
+margin_bottom = 86.0
+
+[node name="GridContainer" type="GridContainer" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_right = 1598.0
+margin_bottom = 60.0
+size_flags_horizontal = 3
+columns = 2
+
+[node name="Label" type="Label" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/GridContainer"]
+margin_top = 5.0
+margin_right = 150.0
+margin_bottom = 19.0
+rect_min_size = Vector2( 150, 0 )
+text = "Name"
+
+[node name="Name" type="LineEdit" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/GridContainer"]
+margin_left = 154.0
+margin_right = 1598.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+editable = false
+
+[node name="Label2" type="Label" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/GridContainer"]
+margin_top = 33.0
+margin_right = 150.0
+margin_bottom = 47.0
+text = "Price"
+
+[node name="Price" type="SpinBox" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/GridContainer"]
+margin_left = 154.0
+margin_top = 28.0
+margin_right = 1598.0
+margin_bottom = 52.0
+editable = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer"]
+margin_left = 1602.0
+margin_right = 1644.0
+margin_bottom = 60.0
+
+[node name="Icon" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer" instance=ExtResource( 2 )]
+margin_right = 42.0
+margin_bottom = 42.0
+rect_min_size = Vector2( 42, 42 )
+texture_size = Vector2( 32, 32 )
+disabled = true
+
+[node name="Label" type="Label" parent="HSplitContainer/Item Handler/VBoxContainer/PanelContainer/VBoxContainer/HBoxContainer/VBoxContainer"]
+margin_top = 46.0
+margin_right = 42.0
+margin_bottom = 60.0
+text = "Icon"
+align = 1

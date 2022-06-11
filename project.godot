@@ -1,0 +1,101 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Reference",
+"class": "ArrayUtil",
+"language": "GDScript",
+"path": "res://scripts/util/array_util.gd"
+}, {
+"base": "Tree",
+"class": "DictionaryTree",
+"language": "GDScript",
+"path": "res://addons/data_editor/scripts/components/dictionary_tree.gd"
+}, {
+"base": "Saveable",
+"class": "GameData",
+"language": "GDScript",
+"path": "res://scripts/runtime_data/game_data.gd"
+}, {
+"base": "Saveable",
+"class": "GameInventory",
+"language": "GDScript",
+"path": "res://scripts/runtime_data/game_inventory.gd"
+}, {
+"base": "Saveable",
+"class": "GameInventorySlot",
+"language": "GDScript",
+"path": "res://scripts/runtime_data/game_inventory_slot.gd"
+}, {
+"base": "Saveable",
+"class": "IDValue",
+"language": "GDScript",
+"path": "res://scripts/util/id_value.gd"
+}, {
+"base": "Reference",
+"class": "NodeUtil",
+"language": "GDScript",
+"path": "res://scripts/util/node_util.gd"
+}, {
+"base": "Reference",
+"class": "Saveable",
+"language": "GDScript",
+"path": "res://scripts/util/saveable.gd"
+}, {
+"base": "Control",
+"class": "TextureSelect",
+"language": "GDScript",
+"path": "res://addons/data_editor/scripts/components/texture_select.gd"
+}, {
+"base": "Control",
+"class": "ValueHandler",
+"language": "GDScript",
+"path": "res://addons/data_editor/scripts/components/value_handler.gd"
+} ]
+_global_script_class_icons={
+"ArrayUtil": "",
+"DictionaryTree": "",
+"GameData": "",
+"GameInventory": "",
+"GameInventorySlot": "",
+"IDValue": "",
+"NodeUtil": "",
+"Saveable": "",
+"TextureSelect": "",
+"ValueHandler": ""
+}
+
+[application]
+
+config/name="Item Tutorial"
+run/main_scene="res://scenes/game.tscn"
+config/icon="res://icon.png"
+
+[autoload]
+
+DataManager="*res://scripts/managers/data_manager.gd"
+GameManager="*res://scripts/managers/game_manager.gd"
+
+[display]
+
+window/size/width=1920
+window/size/height=1080
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/data_editor/plugin.cfg" )
+
+[physics]
+
+common/enable_pause_aware_picking=true
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

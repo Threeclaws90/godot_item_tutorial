@@ -1,0 +1,54 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://addons/data_editor/scripts/components/texture_selection_popup.gd" type="Script" id=1]
+
+[node name="Text Selection Popup" type="AcceptDialog"]
+margin_right = 830.0
+margin_bottom = 765.0
+popup_exclusive = true
+window_title = "Select Texture..."
+script = ExtResource( 1 )
+filter_edit_path = NodePath("MarginContainer/VBoxContainer/Filter")
+size_parent_path = NodePath("MarginContainer/VBoxContainer/Clip")
+selection_parent_path = NodePath("MarginContainer/VBoxContainer/Clip/ScrollContainer/Textures")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 822.0
+margin_bottom = 729.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+margin_right = 814.0
+margin_bottom = 721.0
+
+[node name="Filter" type="LineEdit" parent="MarginContainer/VBoxContainer"]
+margin_right = 814.0
+margin_bottom = 24.0
+size_flags_horizontal = 3
+placeholder_text = "Filter..."
+
+[node name="Clip" type="Control" parent="MarginContainer/VBoxContainer"]
+margin_top = 28.0
+margin_right = 814.0
+margin_bottom = 721.0
+rect_clip_content = true
+size_flags_vertical = 3
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/VBoxContainer/Clip"]
+margin_right = 814.0
+margin_bottom = 656.0
+color = Color( 0, 0, 0, 0.196078 )
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer/Clip"]
+margin_right = 814.0
+margin_bottom = 656.0
+rect_min_size = Vector2( 0, 656 )
+scroll_horizontal_enabled = false
+
+[node name="Textures" type="GridContainer" parent="MarginContainer/VBoxContainer/Clip/ScrollContainer"]
+size_flags_horizontal = 0
+columns = 203
+__meta__ = {
+"_edit_use_anchors_": false
+}
