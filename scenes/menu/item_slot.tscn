@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scripts/menus/inventory/item_slot.gd" type="Script" id=1]
+[ext_resource path="res://graphics/icons/axe.png" type="Texture" id=2]
 
 [sub_resource type="StyleBoxFlat" id=2]
 bg_color = Color( 0, 0, 0, 0.6 )
@@ -29,8 +30,8 @@ border_width_bottom = 1
 border_color = Color( 0, 0, 0, 1 )
 
 [node name="Item Slot" type="Button"]
-margin_right = 40.0
-margin_bottom = 40.0
+margin_right = 34.0
+margin_bottom = 34.0
 rect_min_size = Vector2( 34, 34 )
 custom_styles/hover = SubResource( 2 )
 custom_styles/pressed = SubResource( 2 )
@@ -60,20 +61,23 @@ __meta__ = {
 [node name="Icon" type="TextureRect" parent="MarginContainer"]
 margin_left = 1.0
 margin_top = 1.0
-margin_right = 39.0
-margin_bottom = 39.0
+margin_right = 33.0
+margin_bottom = 33.0
 mouse_filter = 2
+texture = ExtResource( 2 )
+expand = true
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="Count" type="Label" parent="MarginContainer"]
-margin_left = 39.0
-margin_top = 25.0
-margin_right = 39.0
-margin_bottom = 39.0
+margin_left = 25.0
+margin_top = 19.0
+margin_right = 33.0
+margin_bottom = 33.0
 size_flags_horizontal = 10
 size_flags_vertical = 10
+text = "1"
 __meta__ = {
 "_edit_use_anchors_": false
 }

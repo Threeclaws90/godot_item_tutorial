@@ -1,8 +1,8 @@
 tool
 extends Reference
-class_name Saveable
+class_name Savable
 
-const SAVEABLE_TYPE_PROPERTY = "Saveable Type"
+const SAVEABLE_TYPE_PROPERTY = " Type"
 const RESOURCE_PATH_PROPERTY = "Resource Path"
 const SAVE_DATA_PROPERTY = "Save Data"
 const SCRIPT_PROPERTY = "Script"
@@ -16,7 +16,7 @@ const A_PROPERTY = "A"
 
 const ARRAY_TYPE = "Array"
 const DICTIONARY_TYPE = "Dictionary"
-const SAVEABLE_TYPE = "Saveable"
+const SAVEABLE_TYPE = "Savable"
 const RESOURCE_TYPE = "Resource"
 const VEC_2_TYPE = "Vector 2"
 const VEC_3_TYPE = "Vector 3"
@@ -174,7 +174,7 @@ static func load_external_resource(resource_path) -> Resource:
 	return null
 
 
-static func load_saveable(save_data:Dictionary, object_creator:FuncRef) -> Saveable:
+static func load_saveable(save_data:Dictionary, object_creator:FuncRef) -> Savable:
 	if object_creator != null:
 		return object_creator.call_func(save_data[SAVE_DATA_PROPERTY])
 	elif save_data.has(RESOURCE_PATH_PROPERTY):
@@ -184,7 +184,7 @@ static func load_saveable(save_data:Dictionary, object_creator:FuncRef) -> Savea
 		var script : GDScript = load(path) as GDScript
 		if script == null:
 			return null
-		var saveable : Saveable = script.new() as Saveable
+		var saveable : Savable = script.new() as Savable
 		if saveable == null:
 			return null
 		if save_data.has(SAVE_DATA_PROPERTY):

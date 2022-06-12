@@ -3,12 +3,10 @@ extends Control
 class_name ValueHandler
 
 signal property_changed(property)
-signal name_changed()
 
 var value setget set_value, get_value
 
 var _value
-
 
 func _ready() -> void:
 	yield(get_tree(), "idle_frame")

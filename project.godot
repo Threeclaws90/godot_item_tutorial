@@ -19,22 +19,22 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/data_editor/scripts/components/dictionary_tree.gd"
 }, {
-"base": "Saveable",
+"base": "Savable",
 "class": "GameData",
 "language": "GDScript",
 "path": "res://scripts/runtime_data/game_data.gd"
 }, {
-"base": "Saveable",
+"base": "Savable",
 "class": "GameInventory",
 "language": "GDScript",
 "path": "res://scripts/runtime_data/game_inventory.gd"
 }, {
-"base": "Saveable",
+"base": "Savable",
 "class": "GameInventorySlot",
 "language": "GDScript",
 "path": "res://scripts/runtime_data/game_inventory_slot.gd"
 }, {
-"base": "Saveable",
+"base": "Savable",
 "class": "IDValue",
 "language": "GDScript",
 "path": "res://scripts/util/id_value.gd"
@@ -50,9 +50,9 @@ _global_script_classes=[ {
 "path": "res://scripts/util/node_util.gd"
 }, {
 "base": "Reference",
-"class": "Saveable",
+"class": "Savable",
 "language": "GDScript",
-"path": "res://scripts/util/saveable.gd"
+"path": "res://scripts/util/savable.gd"
 }, {
 "base": "Control",
 "class": "TextureSelect",
@@ -73,7 +73,7 @@ _global_script_class_icons={
 "IDValue": "",
 "ItemData": "",
 "NodeUtil": "",
-"Saveable": "",
+"Savable": "",
 "TextureSelect": "",
 "ValueHandler": ""
 }

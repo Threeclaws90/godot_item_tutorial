@@ -1,4 +1,4 @@
-extends Saveable
+extends Savable
 class_name GameInventorySlot
 
 signal content_changed()
@@ -33,7 +33,7 @@ func set_count(value:int) -> void:
 func swap_with_slot(other_slot:Reference) -> void:
 	var other_slot_item : String = other_slot._item_id
 	var other_slot_count : int = other_slot._count
-	other_slot._item_id = _item_id
+	other_slot.item_id = _item_id
 	other_slot.count = _count
 	_item_id = other_slot_item
 	_count = other_slot_count

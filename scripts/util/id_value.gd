@@ -1,5 +1,5 @@
 tool
-extends Saveable
+extends Savable
 class_name IDValue
 
 const ID_PROPERTY = "ID"

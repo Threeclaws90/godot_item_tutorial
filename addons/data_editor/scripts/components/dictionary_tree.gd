@@ -296,6 +296,7 @@ func _rename_selected(key:String) -> void:
 		_move_path(old_paths[i], new_paths[i])
 	dictionary[key] = value
 	dictionary.erase(old_key)
+	emit_signal("selection_changed", _selected)
 
 
 func _rename_value(old_name:String, new_name:String, value) -> void:
@@ -394,7 +395,6 @@ func _get_valid_key(key:String) -> String:
 	while not _is_valid_key(new_key):
 		index += 1
 		new_key = base_string + ("(%d)" % [index])
-	print(new_key)
 	return new_key
 
 

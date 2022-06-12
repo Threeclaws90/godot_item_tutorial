@@ -1,4 +1,4 @@
-extends Saveable
+extends Savable
 class_name GameData
 
 const INVENTORY_PROPERTY : String = "Inventory"

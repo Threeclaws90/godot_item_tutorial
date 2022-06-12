@@ -12,11 +12,11 @@ func _ready() -> void:
 
 
 func _load_data() -> void:
-	_items = Saveable.load_saveable_from_file(ITEM_FILE, null, {})
+	_items = Savable.load_saveable_from_file(ITEM_FILE, null, {})
 
 
 func save_data() -> void:
-	if not Saveable.save_to_file(ITEM_FILE, _items):
+	if not Savable.save_to_file(ITEM_FILE, _items):
 		printerr("Could not save items.")
 
 
