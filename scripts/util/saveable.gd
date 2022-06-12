@@ -133,24 +133,7 @@ static func load_variant(save_data, object_creator:FuncRef = null):
 				DICTIONARY_TYPE:
 					return load_dictionary(save_data[SAVE_DATA_PROPERTY], object_creator)
 				SAVEABLE_TYPE:
-					if object_creator != null:
-						return object_creator.call_func(save_data[SAVE_DATA_PROPERTY])
-					elif save_data.has(RESOURCE_PATH_PROPERTY):
-						var path : String = save_data[RESOURCE_PATH_PROPERTY]
-						if not ResourceLoader.exists(path):
-							return null
-						var script : GDScript = load(path) as GDScript
-						if script == null:
-							return null
-						var saveable : Saveable = script.new() as Saveable
-						if saveable == null:
-							return null
-						if save_data.has(SAVE_DATA_PROPERTY):
-							var saveable_object_data : Dictionary = save_data[SAVE_DATA_PROPERTY]
-							saveable.load_save_data(saveable_object_data)
-						return saveable
-					return null if object_creator == null else \
-							object_creator.call_func(save_data[SAVE_DATA_PROPERTY])
+					return load_saveable(save_data, object_creator)
 				RESOURCE_TYPE:
 					return load_external_resource(save_data[RESOURCE_PATH_PROPERTY])
 				VEC_2_TYPE:
@@ -188,6 +171,26 @@ static func load_external_resource(resource_path) -> Resource:
 		return null
 	if ResourceLoader.exists(resource_path):
 		return ResourceLoader.load(resource_path)
+	return null
+
+
+static func load_saveable(save_data:Dictionary, object_creator:FuncRef) -> Saveable:
+	if object_creator != null:
+		return object_creator.call_func(save_data[SAVE_DATA_PROPERTY])
+	elif save_data.has(RESOURCE_PATH_PROPERTY):
+		var path : String = save_data[RESOURCE_PATH_PROPERTY]
+		if not ResourceLoader.exists(path):
+			return null
+		var script : GDScript = load(path) as GDScript
+		if script == null:
+			return null
+		var saveable : Saveable = script.new() as Saveable
+		if saveable == null:
+			return null
+		if save_data.has(SAVE_DATA_PROPERTY):
+			var saveable_object_data : Dictionary = save_data[SAVE_DATA_PROPERTY]
+			saveable.load_save_data(saveable_object_data)
+		return saveable
 	return null
 
 

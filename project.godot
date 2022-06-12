@@ -39,6 +39,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/util/id_value.gd"
 }, {
+"base": "IDValue",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://scripts/static_data/item.gd"
+}, {
 "base": "Reference",
 "class": "NodeUtil",
 "language": "GDScript",
@@ -66,6 +71,7 @@ _global_script_class_icons={
 "GameInventory": "",
 "GameInventorySlot": "",
 "IDValue": "",
+"ItemData": "",
 "NodeUtil": "",
 "Saveable": "",
 "TextureSelect": "",

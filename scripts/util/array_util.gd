@@ -188,7 +188,7 @@ static func first(array:Array, predicate:FuncRef, parameters:Array = []):
 static func find(array:Array, predicate:FuncRef, parameters:Array = []) -> int:
 	for i in range(0, array.size()):
 		var element = array[i]
-		if predicate.call(element):
+		if predicate.call_func([element] + parameters):
 			return i
 	return -1
 
@@ -237,6 +237,7 @@ static func _accumulate_permuations(k:int, array:Array, result:Array) -> Array:
 	if k == 1:
 		result.append(array.duplicate())
 	else:
+		# warning-ignore:return_value_discarded
 		_accumulate_permuations(k - 1, array, result)
 		var index = 0
 		var is_even : bool = k % 2 == 0
@@ -245,6 +246,7 @@ static func _accumulate_permuations(k:int, array:Array, result:Array) -> Array:
 				swap(array, index, k -1)
 			else:
 				swap(array, 0, k-1)
+			# warning-ignore:return_value_discarded
 			_accumulate_permuations(k - 1, array, result)
 			index += 1
 	return result

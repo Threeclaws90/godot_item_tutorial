@@ -339,19 +339,63 @@ func show_rename_popup() -> void:
 	popup.popup_centered()
 
 
-func _duplicate_value() -> void:
-	pass
+func duplicate_selected() -> void:
+	var selected : TreeItem = _selected
+	if selected == null:
+		return
+	var parent : TreeItem = _selected.get_parent()
+	if parent == null:
+		return
+	var metadata = selected.get_metadata(0)
+	var copy = _duplicate_group(metadata) if typeof(metadata) == TYPE_DICTIONARY else \
+			_duplicate_value(metadata)
+	var new_key : String = _get_valid_key(copy.id)
+	_insert_value(copy, new_key, parent)
+
+
+func _duplicate_group(group:Dictionary) -> Dictionary:
+	var copy : Dictionary = {}
+	for key in group:
+		var value = group[key]
+		if typeof(value) == TYPE_DICTIONARY:
+			group[key] = _duplicate_group(value)
+		elif value is IDValue:
+			group[key] = _duplicate_value(value)
+	return copy
+
+
+func _duplicate_value(value:IDValue) -> IDValue:
+	return null
 
 
 func _is_valid_key(key:String) -> bool:
-	var dictionary = _dictionary
+	var dictionary : Dictionary = _dictionary
 	if _selected != null:
 		var metadata = _selected.get_metadata(0)
 		if typeof(metadata) != TYPE_DICTIONARY:
-			metadata = _selected.get_parent().get_metadata(0)
+			dictionary = _selected.get_parent().get_metadata(0)
 		else:
 			dictionary = metadata
 	return key.length() > 0 and not dictionary.has(key) and not "/" in key
+
+
+func _get_valid_key(key:String) -> String:
+	var regex : RegEx = RegEx.new()
+	regex.compile("^.*(\\(\\d+\\))$")
+	var mtch : RegExMatch = regex.search(key)
+	var base_string : String = key
+	if mtch != null:
+		var start_index : int = base_string.length() - mtch.strings[1].length()
+		base_string = base_string.substr(start_index)
+	print(base_string)
+	base_string = base_string.strip_edges()
+	var new_key : String = base_string
+	var index = 0
+	while not _is_valid_key(new_key):
+		index += 1
+		new_key = base_string + ("(%d)" % [index])
+	print(new_key)
+	return new_key
 
 
 func get_drag_data(position:Vector2):
@@ -435,7 +479,7 @@ func _on_context_menu_pressed(id:int) -> void:
 		ADD_GROUP:
 			show_add_group_popup()
 		DUPLICATE:
-			_duplicate_value()
+			duplicate_selected()
 		DELETE:
 			delete_selected()
 		RENAME:

@@ -37,13 +37,13 @@ func get_slot_data() -> GameInventorySlot:
 	return GameManager.data.inventory.slots[_slot_index]
 
 
-func get_item_data() -> Reference:
+func get_item_data() -> ItemData:
 	return get_slot_data().get_item_data()
 
 
 func refresh() -> void:
 	if _is_ready:
-		var item_data = get_item_data()
+		var item_data : ItemData = get_item_data()
 		if item_data == null:
 			_button.disabled = true
 			_icon_rect.texture = null
@@ -89,3 +89,4 @@ func drop_data(position:Vector2, data) -> void:
 	var dragged_slot : GameInventorySlot = data.get(SLOT_PROPERTY)
 	var dropped_slot : GameInventorySlot = get_slot_data()
 	dropped_slot.swap_with_slot(dragged_slot)
+	grab_focus()

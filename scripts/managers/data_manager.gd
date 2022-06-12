@@ -20,7 +20,7 @@ func save_data() -> void:
 		printerr("Could not save items.")
 
 
-func get_item(item_path:String) -> Reference:
+func get_item(item_path:String) -> ItemData:
 	return _find_value(item_path, _items)
 
 
@@ -40,7 +40,7 @@ func list_icon_paths() -> Array:
 	return _get_directory_paths(ICON_DIRECTORY, ["jpg", "png"])
 
 
-func _find_value(path:String, dictionary:Dictionary) -> Reference:
+func _find_value(path:String, dictionary:Dictionary):
 	var segments : Array = Array(path.split("/"))
 	var value : Reference = null
 	while segments.size() > 0:

@@ -1,8 +1,6 @@
 tool
 extends DictionaryTree
 
-const ITEM_SCRIPT : GDScript = preload("res://scripts/static_data/item.gd")
-
 export(NodePath) var item_handler_path : NodePath
 
 onready var _item_handler = get_node(item_handler_path) as Control
@@ -15,10 +13,15 @@ func _ready() -> void:
 	refresh()
 
 func _new_value(id:String) -> IDValue:
-	var new_item : IDValue = ITEM_SCRIPT.new()
+	var new_item : ItemData = ItemData.new()
 	new_item.id = id
 	new_item.name = id
 	return new_item
+
+
+func _duplicate_value(value:IDValue) -> IDValue:
+	var copy = value.copy()
+	return copy
 
 
 func _on_item_selected(selected:TreeItem) -> void:

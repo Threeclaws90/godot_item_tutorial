@@ -1,5 +1,6 @@
 tool
 extends IDValue
+class_name ItemData
 
 const NAME_PROPERTY = "Name"
 const PRICE_PROPERTY = "Price"
@@ -23,3 +24,12 @@ func to_save_data() -> Dictionary:
 	save_data[PRICE_PROPERTY] = price
 	save_data[ICON_PROPERTY] = variant_to_save_data(icon)
 	return save_data
+
+
+func copy() -> IDValue:
+	var item = get_script().new()
+	item.id = id
+	item.name = name
+	item.price = price
+	item.icon = icon
+	return item

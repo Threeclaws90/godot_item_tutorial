@@ -40,7 +40,7 @@ func swap_with_slot(other_slot:Reference) -> void:
 	emit_signal("content_changed")
 
 
-func get_item_data() -> Reference:
+func get_item_data() -> ItemData:
 	return null if is_empty() else DataManager.get_item(_item_id)
 
 
