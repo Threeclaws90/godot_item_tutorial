@@ -179,9 +179,9 @@ func select(item:TreeItem) -> void:
 
 func deselect() -> void:
 	var selected = get_selected()
-	if selected:
+	if selected != null and is_instance_valid(_selected):
 		selected.deselect(get_selected_column())
-		_selected = null
+	_selected = null
 
 
 func refresh() -> void:
